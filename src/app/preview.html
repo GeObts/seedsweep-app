@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SeedSweep - Preview</title>
+  <style>
+    :root {
+      --foreground-rgb: 255, 255, 255;
+      --background-start-rgb: 0, 0, 0;
+      --background-end-rgb: 10, 10, 10;
+      --neon-primary: #0ff;
+      --neon-secondary: #f0f;
+      --neon-success: #0f0;
+    }
+    
+    body {
+      color: rgb(var(--foreground-rgb));
+      background: linear-gradient(
+          to bottom,
+          transparent,
+          rgb(var(--background-end-rgb))
+        )
+        rgb(var(--background-start-rgb));
+      min-height: 100vh;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    
+    .neon-text {
+      color: var(--neon-primary);
+      text-shadow: 0 0 5px var(--neon-primary), 0 0 10px var(--neon-primary);
+    }
+    
+    .neon-text-secondary {
+      color: var(--neon-secondary);
+      text-shadow: 0 0 5px var(--neon-secondary), 0 0 10px var(--neon-secondary);
+    }
+    
+    .neon-text-success {
+      color: var(--neon-success);
+      text-shadow: 0 0 5px var(--neon-success), 0 0 10px var(--neon-success);
+    }
+    
+    .neon-border {
+      border: 1px solid var(--neon-primary);
+      box-shadow: 0 0 5px var(--neon-primary), inset 0 0 5px var(--neon-primary);
+    }
+    
+    .neon-border-success {
+      border: 1px solid var(--neon-success);
+      box-shadow: 0 0 5px var(--neon-success), inset 0 0 5px var(--neon-success);
+    }
+    
+    .neon-button {
+      background-color: transparent;
+      color: var(--neon-primary);
+      border: 1px solid var(--neon-primary);
+      box-shadow: 0 0 5px var(--neon-primary);
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    
+    .neon-button:hover {
+      background-color: rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 10px var(--neon-primary), 0 0 20px var(--neon-primary);
+    }
+    
+    .seed-phrase {
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 8px;
+      padding: 16px;
+      font-family: monospace;
+      letter-spacing: 0.5px;
+    }
+    
+    .success-animation {
+      animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+      0% {
+        opacity: 0.6;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.6;
+      }
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    
+    .main-panel {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid #333;
+    }
+    
+    .wallet-button {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    
+    .word-chip {
+      display: inline-block;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      padding: 4px 8px;
+      background-color: #222;
+      border-radius: 4px;
+    }
+    
+    .footer {
+      margin-top: 32px;
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .wallet-status {
+      font-size: 12px;
+      color: #0f0;
+      margin-top: 4px;
+      text-align: right;
+    }
+    
+    .address-display {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 8px;
+      word-break: break-all;
+    }
+    
+    @media (max-width: 640px) {
+      .header {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .header h1 {
+        margin-bottom: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 class="neon-text">SeedSweep</h1>
+      <div>
+        <button class="wallet-button">Connect Wallet</button>
+        <div class="wallet-status">Wallet connected</div>
+      </div>
+    </div>
+    
+    <div class="main-panel">
+      <h2 class="neon-text-secondary">Pay $0.01 to generate a wallet… maybe you get lucky</h2>
+      
+      <p>Each click generates a random BIP39 12-word seed phrase and checks if the corresponding wallet has any ETH balance. Who knows, you might get lucky!</p>
+      
+      <button class="neon-button">Generate Seed Phrase ($0.01 USDC)</button>
+      
+      <!-- Seed phrase display -->
+      <div style="margin-top: 32px;" class="neon-border">
+        <h3 class="neon-text" style="margin: 16px;">Generated Seed Phrase</h3>
+        
+        <div class="seed-phrase">
+          <span class="word-chip">abandon</span>
+          <span class="word-chip">ability</span>
+          <span class="word-chip">able</span>
+          <span class="word-chip">about</span>
+          <span class="word-chip">above</span>
+          <span class="word-chip">absent</span>
+          <span class="word-chip">absorb</span>
+          <span class="word-chip">abstract</span>
+          <span class="word-chip">absurd</span>
+          <span class="word-chip">abuse</span>
+          <span class="word-chip">access</span>
+          <span class="word-chip">accident</span>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding: 0 16px 16px;">
+          <div class="address-display">
+            Address: 0x1234567890abcdef1234567890abcdef12345678
+          </div>
+          
+          <button class="neon-button" style="font-size: 14px; padding: 6px 12px;">Copy Seed Phrase</button>
+        </div>
+      </div>
+      
+      <!-- Success state -->
+      <div style="margin-top: 32px;" class="neon-border-success">
+        <h3 class="neon-text-success success-animation" style="margin: 16px;">🎉 Wallet Found with 0.0123 ETH!</h3>
+        
+        <div class="seed-phrase">
+          <span class="word-chip">abandon</span>
+          <span class="word-chip">ability</span>
+          <span class="word-chip">able</span>
+          <span class="word-chip">about</span>
+          <span class="word-chip">above</span>
+          <span class="word-chip">absent</span>
+          <span class="word-chip">absorb</span>
+          <span class="word-chip">abstract</span>
+          <span class="word-chip">absurd</span>
+          <span class="word-chip">abuse</span>
+          <span class="word-chip">access</span>
+          <span class="word-chip">accident</span>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding: 0 16px 16px;">
+          <div class="address-display">
+            Address: 0x1234567890abcdef1234567890abcdef12345678
+          </div>
+          
+          <button class="neon-button" style="font-size: 14px; padding: 6px 12px;">Copy Seed Phrase</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>All seed phrases are generated client-side and never stored or transmitted.</p>
+      <p>Built with OnchainKit SDK v0.38.13</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 10, 10, 10;
+  --neon-primary: #0ff;
+  --neon-secondary: #f0f;
+  --neon-success: #0f0;
+}
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  min-height: 100vh;
+}
+.neon-text {
+  color: var(--neon-primary);
+  text-shadow: 0 0 5px var(--neon-primary), 0 0 10px var(--neon-primary);
+}
+.neon-text-secondary {
+  color: var(--neon-secondary);
+  text-shadow: 0 0 5px var(--neon-secondary), 0 0 10px var(--neon-secondary);
+}
+.neon-text-success {
+  color: var(--neon-success);
+  text-shadow: 0 0 5px var(--neon-success), 0 0 10px var(--neon-success);
+}
+.neon-border {
+  border: 1px solid var(--neon-primary);
+  box-shadow: 0 0 5px var(--neon-primary), inset 0 0 5px var(--neon-primary);
+}
+.neon-border-success {
+  border: 1px solid var(--neon-success);
+  box-shadow: 0 0 5px var(--neon-success), inset 0 0 5px var(--neon-success);
+}
+.neon-button {
+  background-color: transparent;
+  color: var(--neon-primary);
+  border: 1px solid var(--neon-primary);
+  box-shadow: 0 0 5px var(--neon-primary);
+  transition: all 0.3s ease;
+}
+.neon-button:hover:not(:disabled) {
+  background-color: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 10px var(--neon-primary), 0 0 20px var(--neon-primary);
+}
+.neon-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.seed-phrase {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  padding: 16px;
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+.success-animation {
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
